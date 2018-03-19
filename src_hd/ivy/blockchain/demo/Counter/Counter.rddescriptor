@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<richDialogDescriptor>
+    <autoScreenshot>true</autoScreenshot>
+    <method>
+        <name>createContract</name>
+        <description>Creates a new Counter Contract.</description>
+        <outputParameter>
+            <name>data</name>
+            <description></description>
+            <parameterType>ivy.blockchain.demo.Data</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </outputParameter>
+    </method>
+    <method>
+        <name>add</name>
+        <description>Adds value 1 to the counterValue.</description>
+        <inputParameter>
+            <name>data</name>
+            <description></description>
+            <parameterType>ivy.blockchain.demo.Data</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </inputParameter>
+        <outputParameter>
+            <name>data</name>
+            <description></description>
+            <parameterType>ivy.blockchain.demo.Data</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </outputParameter>
+    </method>
+    <method>
+        <name>subtract</name>
+        <description>Subtracts value 1 from the counterValue.</description>
+        <inputParameter>
+            <name>data</name>
+            <description></description>
+            <parameterType>ivy.blockchain.demo.Data</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </inputParameter>
+        <outputParameter>
+            <name>data</name>
+            <description></description>
+            <parameterType>ivy.blockchain.demo.Data</parameterType>
+            <nullPermitted>true</nullPermitted>
+        </outputParameter>
+    </method>
+    <startMethod>
+        <name>start</name>
+        <description>Default dialog start method.</description>
+    </startMethod>
+    <property>
+        <name>guid</name>
+        <value>16228AC81CD216E3</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>version</name>
+        <value>1</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>binary</name>
+        <value>false</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>viewTechnology</name>
+        <value>JSF</value>
+        <readOnly>true</readOnly>
+    </property>
+</richDialogDescriptor>

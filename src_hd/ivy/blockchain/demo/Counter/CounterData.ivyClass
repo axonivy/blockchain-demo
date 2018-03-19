@@ -1,0 +1,10 @@
+CounterData #class
+ivy.blockchain.demo.Counter #namespace
+data ivy.blockchain.demo.Data #field
+data PERSISTENT #fieldModifier
+url String #field
+url PERSISTENT #fieldModifier
+keystore String #field
+keystore PERSISTENT #fieldModifier
+password String #field
+password PERSISTENT #fieldModifier

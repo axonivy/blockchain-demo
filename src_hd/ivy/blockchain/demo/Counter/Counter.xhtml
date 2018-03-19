@@ -1,0 +1,172 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+	<ui:composition template="/layouts/basic.xhtml">
+		<ui:define name="title">Ethereum Counter Demo</ui:define>
+		<ui:define name="content">
+			<h3>&#160;Ethereum Blockchain Integration Demo&#160;</h3>
+			<h:form id="form">
+				<p:panelGrid>
+              <p:row>
+                <p:column style="width:15%">Ethereum Network</p:column>
+                <p:column>
+				          <p:selectOneMenu style="width:15%" value="#{data.url}">
+				            <f:selectItem itemLabel="Rinkeby" itemValue="https://rinkeby.infura.io" />
+				            <f:selectItem itemLabel="Localhost" itemValue="http://localhost:8545" />
+				          </p:selectOneMenu>
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>Local Keystore File</p:column>
+                <p:column>
+                  <p:inputText style="width:95%" value="#{data.keystore}"/>
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>Keystore Password</p:column>
+                <p:column>
+                  <p:inputText style="width:20%" value="#{data.password}"/>
+                </p:column>
+              </p:row>
+				</p:panelGrid>
+				<br/>
+				<h:panelGrid columns="1">
+					<f:facet name="header"></f:facet>
+
+					<p:commandButton actionListener="#{logic.createContract}" value="Create Contract" update="form" icon="ui-icon-circle-plus" />
+					<br/>
+	        <h:panelGrid columns="2">
+		        <h:panelGrid columns="1">
+							<p:commandButton actionListener="#{logic.add(data.data)}" update="form" icon="ui-icon-triangle-1-n" />
+							<p:commandButton actionListener="#{logic.subtract(data.data)}" update="form" icon="ui-icon-triangle-1-s" />
+		        </h:panelGrid>
+						<p:outputLabel value="#{data.data.contractData.counterValue}"/>
+	        </h:panelGrid>
+					<br/><br/>
+				  <p:commandButton actionListener="#{logic.close}" value="Exit" update="form" icon="ui-icon-check" />
+					<br/>
+				</h:panelGrid>
+				<p:outputLabel value="ContractID: #{data.data.contractData.contractAddress}"></p:outputLabel>
+				<br/>
+				<p:dataTable border="1" var="row" value="#{data.data.contractData.transactions}">
+
+          <p:column style="width:16px">
+            <p:rowToggler />
+          </p:column>
+
+          <p:rowExpansion >
+            <p:panelGrid>
+              <p:row>
+	              <p:column style="width:15%">Block</p:column>
+	              <p:column>
+	                <h:outputText value="#{row.blockId}"/>
+	              </p:column>
+              </p:row>
+              <p:row>
+                <p:column>Tx Hash</p:column>
+                <p:column>
+                  <h:outputText value="#{row.txHash}"/>
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>Gas Price</p:column>
+                <p:column>
+                  <h:outputText value="#{row.gasPrice}"/>
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>Gas Used</p:column>
+                <p:column>
+                  <h:outputText value="#{row.gasUsed}"/>
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>Gas Limit</p:column>
+                <p:column>
+                  <h:outputText value="#{row.gasLimit}"/>
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>Tx From</p:column>
+                <p:column>
+                  <h:outputText value="#{row.from}"/>
+                </p:column>
+              </p:row>
+              <p:row>
+                <p:column>Tx To</p:column>
+                <p:column>
+                  <h:outputText value="#{row.to}"/>
+                </p:column>
+              </p:row>
+            </p:panelGrid>
+          </p:rowExpansion>
+              
+					<p:column headerText="BlockId" sortBy="#{row.blockId}" style="width:30px;text-align:center;">
+						<h:outputText value="#{row.blockId}"></h:outputText>
+					</p:column>
+          <p:column headerText="TxHash" style="width:250px">
+            <h:outputText value="#{row.txHash}"></h:outputText>
+          </p:column>
+					<p:column headerText="TxCost (GWEI)" style="width:70px">
+						<h:outputText value="#{row.txCost}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+				<!-- 
+				<h:panelGroup id="transactions" layout="block">
+        <p>List of executed transactions:</p>
+				<p:dataTable id="theTable" sortOrder="descending" 
+              value="#{data.data.contractData.transactions}" var="trans" 
+              selection="#{trans.blockNumber}" selectionMode="single" rowKey="#{trans.blockNumber}"  
+              draggableColumns="true" style="width:900px">
+
+              <f:facet name="header">
+              </f:facet>
+
+              <p:column style="width:16px">
+                <p:rowToggler />
+              </p:column>
+
+              <p:rowExpansion>
+                <p:panelGrid columns="2" style="width:400px">
+                  <p:outputLabel>Block</p:outputLabel>
+                  <p:inputText value="#{trans.blockNumber}" disabled="true"/>
+                  <p:outputLabel>Name</p:outputLabel>
+                  <p:inputText value="#{trans.transactionHash}" disabled="true"/>
+                  <p:outputLabel>Gas Price</p:outputLabel>
+                  <p:inputText value="#{data.data.contractData.contractGasPrice}" disabled="true"/>
+                  <p:outputLabel>Gas Used</p:outputLabel>
+                  <p:inputText value="#{trans.gasUsed}" disabled="true"/>
+                </p:panelGrid>
+              </p:rowExpansion>
+              <p:column headerText="Block" sortBy="#{trans.blockNumber}"
+                style="width:50px" id="blockId">
+                <p:outputLabel value="#{trans.blockNumber}"/>
+              </p:column>
+
+              <p:column headerText="TxHash" style="width:250px" id="txHash">
+                <p:outputLabel value="#{trans.transactionHash}"/>
+              </p:column>
+
+              <p:column headerText="Gas Used" style="width:50px" id="gasUsed">
+                <p:outputLabel value="#{trans.gasUsed}"/>
+              </p:column>
+
+
+              <p:column headerText="Gas Price" style="width:50px" id="gasPrice">
+                <p:outputLabel value="#{data.data.contractData.contractGasPrice}"/>
+              </p:column>
+
+            </p:dataTable>
+        </h:panelGroup> -->
+			</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

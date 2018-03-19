@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ivy.blockchain.demo</groupId>
+	<artifactId>ivy-blockchain-demo</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>iar</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>web3j-maven-plugin</artifactId>
+			<version>0.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>core</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.axonivy.ivy.ci</groupId>
+				<artifactId>project-build-plugin</artifactId>
+				<version>7.0.1</version>
+				<extensions>true</extensions>
+			</plugin>
+      <plugin>
+        <groupId>org.web3j</groupId>
+        <artifactId>web3j-maven-plugin</artifactId>
+        <executions>
+           <execution>
+             <phase>generate-sources</phase>
+             <goals><goal>generate-sources</goal></goals>
+           </execution>
+        </executions>
+        <configuration>
+          <soliditySourceFiles>
+            <directory>data</directory>
+            <includes>
+              <include>**/*.sol</include>
+            </includes>
+          </soliditySourceFiles>
+          <packageName>ivy.blockchain.demo.model</packageName>
+          <sourceDestination>src</sourceDestination>
+        </configuration>
+      </plugin>
+		</plugins>
+	</build>
+</project>
