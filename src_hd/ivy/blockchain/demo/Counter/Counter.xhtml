@@ -16,9 +16,9 @@
               <p:row>
                 <p:column style="width:15%">Ethereum Network</p:column>
                 <p:column>
-				          <p:selectOneMenu style="width:15%" value="#{data.url}">
-				            <f:selectItem itemLabel="Rinkeby" itemValue="https://rinkeby.infura.io" />
-				            <f:selectItem itemLabel="Localhost" itemValue="http://localhost:8545" />
+				          <p:selectOneMenu style="width:40%" value="#{data.url}">
+				            <f:selectItem itemLabel="Rinkeby (Test Blockchain)" itemValue="https://rinkeby.infura.io" />
+				            <f:selectItem itemLabel="Localhost (Private Blockchain)" itemValue="http://localhost:8545" />
 				          </p:selectOneMenu>
                 </p:column>
               </p:row>
@@ -31,7 +31,7 @@
               <p:row>
                 <p:column>Keystore Password</p:column>
                 <p:column>
-                  <p:inputText style="width:20%" value="#{data.password}"/>
+                  <p:password redisplay="true" style="width:20%" value="#{data.password}"/>
                 </p:column>
               </p:row>
 				</p:panelGrid>
@@ -43,10 +43,11 @@
 					<br/>
 	        <h:panelGrid columns="2">
 		        <h:panelGrid columns="1">
-							<p:commandButton actionListener="#{logic.add(data.data)}" update="form" icon="ui-icon-triangle-1-n" />
-							<p:commandButton actionListener="#{logic.subtract(data.data)}" update="form" icon="ui-icon-triangle-1-s" />
-		        </h:panelGrid>
-						<p:outputLabel value="#{data.data.contractData.counterValue}"/>
+							<p:commandButton actionListener="#{logic.add(data.data)}" update="form" icon="ui-icon-plus" />
+							<p:commandButton actionListener="#{logic.subtract(data.data)}"
+								update="form" icon="ui-icon-minus" />
+						</h:panelGrid>
+						<h:outputText style="font-size: 3em;" value="#{data.data.contractData.counterValue}"/>
 	        </h:panelGrid>
 					<br/><br/>
 				  <p:commandButton actionListener="#{logic.close}" value="Exit" update="form" icon="ui-icon-check" />
