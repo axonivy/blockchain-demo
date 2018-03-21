@@ -1,6 +1,9 @@
 # Axon.ivy Blockchain Demo
 The demo shows how Axon.ivy can be used in conjunction with a blockchain technology like Ethereum.
 
+## Overview
+![Overview](ethereum.png)
+
 ## Requirements
 * Axon.ivy Designer version 7.1.0 or later.
 * Local wallet keystore that is valid on a local Geth node or on the Rinkeby Testnet. For test purposes you can follow [these instructions](https://myetherwallet.github.io/knowledge-base/getting-started/creating-a-new-wallet-on-myetherwallet.html/).
