@@ -7,13 +7,10 @@ The demo shows how Axon.ivy can be used in conjunction with a blockchain technol
 ## Requirements
 * Axon.ivy Designer version 7.1.0 or later.
 * Local wallet keystore that is valid on a local Geth node or on the Rinkeby Testnet. For test purposes you can follow [these instructions](https://myetherwallet.github.io/knowledge-base/getting-started/creating-a-new-wallet-on-myetherwallet.html).
-* Enough Ether in the wallet to run demo program (GasLimit is 150000 and GasPrice is 40 Gwei). Free Ether on the Rinkeby Testnet can be received [here](https://faucet.rinkeby.io/) (a valid Twitter, Google+ or Facebook account is needed for authentication).
+* Enough Ether in the wallet to run demo program (GasLimit is 150000 and GasPrice is 40 Gwei). Free Ether on the Rinkeby Testnet can be received [here](https://faucet.rinkeby.io/) (a valid Twitter, Google+ or Facebook account is needed for authentication). To check your Ether balance, search for your public key address [here](https://rinkeby.etherscan.io/).
 
 ## Download
 Download or clone the latest **Axon.ivy Blockchain Demo** project from [here](https://github.com/ivy-samples/ivy-blockchain-demo.git).
-
-## Local Build
-    mvn clean generate-sources
 
 ## Running the Demo
 1. Start the Axon.ivy Designer.
