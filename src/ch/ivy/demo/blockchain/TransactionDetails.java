@@ -3,6 +3,7 @@ package ch.ivy.demo.blockchain;
 import java.math.BigInteger;
 
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.tx.gas.ContractGasProvider;
 
 public class TransactionDetails
 {
@@ -17,19 +18,18 @@ public class TransactionDetails
   private String from;
   private String to;
 
-  public TransactionDetails(TransactionReceipt txReceipt, BigInteger gasPrice, BigInteger gasLimit)
-  {
-    this.txHash = txReceipt.getTransactionHash();
-    this.blockId = txReceipt.getBlockNumber();
-    this.gasPrice = gasPrice;
-    this.gasUsed = txReceipt.getGasUsed();
-    this.gasLimit = gasLimit;
-    this.txCost = this.gasPrice.multiply(gasUsed);
-    this.from = txReceipt.getFrom();
-    this.to = txReceipt.getTo();
-  }
+  public TransactionDetails(TransactionReceipt txReceipt, ContractGasProvider gasProvider) {
+	    this.txHash = txReceipt.getTransactionHash();
+	    this.blockId = txReceipt.getBlockNumber();
+	    this.gasPrice = gasProvider.getGasPrice(null);
+	    this.gasUsed = txReceipt.getGasUsed();
+	    this.gasLimit = gasProvider.getGasLimit(null);
+	    this.txCost = this.gasPrice.multiply(gasUsed);
+	    this.from = txReceipt.getFrom();
+	    this.to = txReceipt.getTo() == null ? "n/a" : txReceipt.getTo();
+}
 
-  public String getTxHash()
+public String getTxHash()
   {
     return txHash;
   }

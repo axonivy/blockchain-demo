@@ -1,10 +1,10 @@
 package ch.ivy.demo.blockchain;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.tx.gas.ContractGasProvider;
 
 public final class ContractData
 {
@@ -43,9 +43,9 @@ public final class ContractData
     counterValue = _counterValue;
   }
 
-  public void addTransaction(TransactionReceipt txReceipt, BigInteger gasPrice, BigInteger gasLimit)
+  public void addTransaction(TransactionReceipt txReceipt, ContractGasProvider gasProvider)
   {
-    TransactionDetails tx = new TransactionDetails(txReceipt, gasPrice, gasLimit);
+    TransactionDetails tx = new TransactionDetails(txReceipt, gasProvider);
     transactions.add(0, tx);
   }
 

@@ -7,15 +7,14 @@ import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
+import org.web3j.tx.gas.ContractGasProvider;
 
 import com.axonivy.demo.blockchain.SimpleCounter;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class CallEthereum
 {
-  private static final BigInteger GAS_PRIZE = BigInteger.valueOf(40000000000l);
-  private static final BigInteger GAS_LIMIT = BigInteger.valueOf(150000l);
-
+  private static final ContractGasProvider GAS_PROVIDER = IvyGasProvider.getInstance();
   private final Credentials credentials;
 
   public CallEthereum(String keystoreFile, String passwd)
@@ -33,13 +32,13 @@ public class CallEthereum
   public ContractData deployContract(String url) throws Exception
   {
     Web3j web3 = buildWeb3j(url);
-    SimpleCounter sc = SimpleCounter.deploy(web3, this.credentials, GAS_PRIZE, GAS_LIMIT).send();
+    SimpleCounter sc = SimpleCounter.deploy(web3, this.credentials, GAS_PROVIDER).send();
     logTransaction(sc);
     ContractData data = new ContractData();
     data.setCounterValue(getCounterValue(sc));
     data.setContractAddress(sc.getContractAddress());
-    data.setContractGasPrice(GAS_PRIZE);
-    data.addTransaction(sc.getTransactionReceipt().get(), GAS_PRIZE, GAS_LIMIT);
+    data.setContractGasPrice(GAS_PROVIDER.getGasPrice(null));
+    data.addTransaction(sc.getTransactionReceipt().get(), GAS_PROVIDER);
     return data;
   }
 
@@ -49,7 +48,7 @@ public class CallEthereum
     TransactionReceipt trxReceipt = sc.add().send();
     logTxSuccess(trxReceipt);
     data.setCounterValue(getCounterValue(sc));
-    data.addTransaction(trxReceipt, GAS_PRIZE, GAS_LIMIT);
+    data.addTransaction(trxReceipt, GAS_PROVIDER);
     return data;
   }
 
@@ -59,7 +58,7 @@ public class CallEthereum
     TransactionReceipt trxReceipt = sc.subtract().send();
     logTxSuccess(trxReceipt);
     data.setCounterValue(getCounterValue(sc));
-    data.addTransaction(trxReceipt, GAS_PRIZE, GAS_LIMIT);
+    data.addTransaction(trxReceipt, GAS_PROVIDER);
     return data;
   }
 
@@ -77,7 +76,7 @@ public class CallEthereum
   private SimpleCounter loadContract(String url, String contractAddress)
   {
     Web3j web3 = buildWeb3j(url);
-    SimpleCounter sc = SimpleCounter.load(contractAddress, web3, credentials, GAS_PRIZE, GAS_LIMIT);
+	SimpleCounter sc = SimpleCounter.load(contractAddress, web3, credentials, GAS_PROVIDER);
     return sc;
   }
 
