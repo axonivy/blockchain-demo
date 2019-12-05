@@ -153,10 +153,10 @@ Cs0 f15 actionDecl 'ivy.blockchain.demo.Counter.CounterData out;
 ' #txt
 Cs0 f15 actionTable 'out=in;
 ' #txt
-Cs0 f15 actionCode 'import ivy.blockchain.demo.ContractData;
+Cs0 f15 actionCode 'import ch.ivy.demo.blockchain.ContractData;
+import ch.ivy.demo.blockchain.CallEthereum;
 import ivy.blockchain.demo.Data;
 import ch.ivyteam.ivy.environment.Ivy;
-import ivy.blockchain.demo.CallEthereum;
 
 CallEthereum call = new CallEthereum(in.keystore, in.password);
 ContractData data = call.deployContract(in.url);
@@ -180,10 +180,10 @@ Cs0 f17 actionDecl 'ivy.blockchain.demo.Counter.CounterData out;
 ' #txt
 Cs0 f17 actionTable 'out=in;
 ' #txt
-Cs0 f17 actionCode 'import ivy.blockchain.demo.ContractData;
+Cs0 f17 actionCode 'import ch.ivy.demo.blockchain.ContractData;
+import ch.ivy.demo.blockchain.CallEthereum;
 import ivy.blockchain.demo.Data;
 import ch.ivyteam.ivy.environment.Ivy;
-import ivy.blockchain.demo.CallEthereum;
 
 CallEthereum call = new CallEthereum(in.keystore, in.password);
 ContractData data = call.add(in.url, in.data.contractData.contractAddress, in.data.contractData);
@@ -206,10 +206,10 @@ Cs0 f19 actionDecl 'ivy.blockchain.demo.Counter.CounterData out;
 ' #txt
 Cs0 f19 actionTable 'out=in;
 ' #txt
-Cs0 f19 actionCode 'import ivy.blockchain.demo.ContractData;
+Cs0 f19 actionCode 'import ch.ivy.demo.blockchain.ContractData;
+import ch.ivy.demo.blockchain.CallEthereum;
 import ivy.blockchain.demo.Data;
 import ch.ivyteam.ivy.environment.Ivy;
-import ivy.blockchain.demo.CallEthereum;
 
 CallEthereum call = new CallEthereum(in.keystore, in.password);
 ContractData data = call.subtract(in.url, in.data.contractData.contractAddress, in.data.contractData);

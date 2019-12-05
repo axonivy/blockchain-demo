@@ -1,6 +1,4 @@
-package ivy.blockchain.demo;
-
-import ivy.blockchain.demo.model.SimpleCounter;
+package ch.ivy.demo.blockchain;
 
 import java.math.BigInteger;
 
@@ -10,6 +8,7 @@ import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 
+import com.axonivy.demo.blockchain.SimpleCounter;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class CallEthereum

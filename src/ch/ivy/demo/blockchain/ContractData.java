@@ -1,4 +1,4 @@
-package ivy.blockchain.demo;
+package ch.ivy.demo.blockchain;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
