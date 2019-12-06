@@ -1,4 +1,4 @@
 Data #class
 ivy.blockchain.demo #namespace
-contractData ivy.blockchain.demo.ContractData #field
+contractData ch.ivy.demo.blockchain.ContractData #field
 contractData PERSISTENT #fieldModifier
